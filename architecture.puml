@@ -1,0 +1,22 @@
+@startuml 
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Digtal Test Tracking Sheet (DTTS) App
+
+Person(user, "User", "DTTS user")
+
+System_Boundary(c1, "Nest JS source code") { 
+    Container(webApp, "DTTS Web App", " HTML / CSS / Angular ", "User Interface to plan, track and testing activies") 
+    Container(backend, "API Server", " Nest JS framework ", "backend that handles HTTP requests.")
+}
+
+System_Ext(database, " Database System", "Mongo DB")
+
+Rel_Neighbor(user, webApp,               "uses") 
+Rel(webApp, backend,   " save data to / fetches data from")
+
+Rel_Neighbor(backend, database,    "saves data on") 
+ 
+@enduml
